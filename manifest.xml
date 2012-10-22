@@ -1,0 +1,24 @@
+<package>
+  <description brief="fugu_gui">
+
+     fugu_gui
+
+  </description>
+  <author>Miquel Massot</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/gui_fugu</url>
+  <depend package="rospy"/>
+  <depend package="rqt_gui"/>
+  <depend package="rqt_gui_py"/>
+  <depend package="geometry_msgs"/>
+  <depend package="std_msgs"/>
+  <depend package="srv_msgs"/>
+  <depend package="sensor_msgs"/>
+  <!-- all the existing tags -->
+  <export>
+    <rqt_gui plugin="${prefix}/plugin.xml"/>
+  </export>
+</package>
+
+
