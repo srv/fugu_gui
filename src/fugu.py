@@ -1,6 +1,6 @@
 import os
 import roslib
-roslib.load_manifest('gui_fugu')
+roslib.load_manifest('fugu_gui')
 import rospy
 
 from qt_gui.plugin import Plugin
