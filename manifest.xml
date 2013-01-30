@@ -13,7 +13,7 @@
   <depend package="rqt_gui_py"/>
   <depend package="geometry_msgs"/>
   <depend package="std_msgs"/>
-  <depend package="srv_msgs"/>
+  <depend package="auv_sensor_msgs"/>
   <depend package="sensor_msgs"/>
   <!-- all the existing tags -->
   <export>

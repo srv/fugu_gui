@@ -9,7 +9,7 @@ from python_qt_binding.QtGui import QWidget
 
 from geometry_msgs.msg import WrenchStamped
 from sensor_msgs.msg import Range
-from srv_msgs.msg import WaterIn,Depth
+from auv_sensor_msgs.msg import Humidity,Depth
 from std_msgs.msg import Float32
 
 class PluginFugu(Plugin):
@@ -35,11 +35,11 @@ class PluginFugu(Plugin):
 
         self._altitude_request_pub = rospy.Publisher('altitude_request', Float32)
 
-        rospy.Subscriber("/motor_board/depth", Depth, self._depth_subscriber_callback)
-        rospy.Subscriber("/motor_board/humidity", WaterIn, self._humidity_subscriber_callback)
-        rospy.Subscriber("/wrench_levels", WrenchStamped, self._wrench_levels_subscriber_callback)
-        rospy.Subscriber("/wrench_request", WrenchStamped, self._wrench_request_subscriber_callback)
-        rospy.Subscriber("/visual_altimeter/altitude", Range, self._altitude_subscriber_callback)
+        rospy.Subscriber("depth", Depth, self._depth_subscriber_callback)
+        rospy.Subscriber("humidity", Humidity, self._humidity_subscriber_callback)
+        rospy.Subscriber("wrench", WrenchStamped, self._wrench_levels_subscriber_callback)
+        rospy.Subscriber("wrench_request", WrenchStamped, self._wrench_request_subscriber_callback)
+        rospy.Subscriber("altitude", Range, self._altitude_subscriber_callback)
 
         self._widget.altitude_setpoint_btn.pressed.connect(self._on_altitude_setpoint_change)
 
@@ -69,7 +69,7 @@ class PluginFugu(Plugin):
         self._widget.altitude_lbl.setText(format(data.range,'.2f'))
     
     def _on_altitude_setpoint_change(self):
-        self._altitude_request_pub.Publish(float(self._widget.altitude_setpoint_led.text()))
+        self._altitude_request_pub.publish(float(self._widget.altitude_setpoint_led.text()))
         print 'Changed setpoint to:' + self._widget.altitude_setpoint_led.text()
 
     def shutdown_plugin(self):
